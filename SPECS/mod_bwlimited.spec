@@ -2,7 +2,7 @@
 %global module_name mod_bwlimited
 
 Summary: Provides cPanel's way of disabling bandwidth exceeders
-Name: %{ns_name}-%{module_name}
+Name: ea-mod_bwlimited
 Version: 1.4
 Release: 1%{?dist}
 License: Unknown
