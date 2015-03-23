@@ -13,8 +13,8 @@ License: Unknown
 Group: System Environment/Daemons
 URL: http://cpanel.net/
 Source0: mod_bwlimited-1.4.tar.gz
-BuildRequires: httpd-devel
-Requires: httpd-mmn = %{_httpd_mmn}
+BuildRequires: ea-apache2-devel
+Requires: ea-apache2-mmn = %{_httpd_mmn}
 Requires(pre): httpd
 
 # Suppres auto-provides for module DSO
@@ -38,4 +38,4 @@ install -Dp -m 0644 .libs/mod_bwlimited.so $RPM_BUILD_ROOT%{_httpd_moddir}/mod_b
 
 %changelog
 * Wed Nov 26 2014 Matt Dees <matt@cpanel.net> - 1.4-1
-* implement spec
+* Implement a new spec
