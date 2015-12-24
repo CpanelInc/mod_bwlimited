@@ -4,7 +4,7 @@
 Summary: Provides cPanel's way of disabling bandwidth exceeders
 Name: ea-apache24-mod_bwlimited
 Version: 1.4
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: Unknown
 Group: System Environment/Daemons
 URL: http://cpanel.net/
@@ -33,13 +33,18 @@ mv .libs/%{module_name}.so .
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_httpd_moddir}
 install -m755 %{module_name}.so %{buildroot}%{_httpd_moddir}/
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/apache2/conf.modules.d/
+install -m 644 -p $RPM_SOURCE_DIR/490_bwlimited.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache2/conf.modules.d/490_bwlimited.conf
 
 %files
 %defattr(0640,root,root,0755)
 %attr(755,root,root)%{_httpd_moddir}/*.so
-
+%config(noreplace) %{_sysconfdir}/apache2/conf.modules.d/490_bwlimited.conf
 
 %changelog
+* Thu Dec 24 2015 Dan Muey <dan@cpanel.net> - 1.4-3
+- Enable module by installing 490_bwlimited.conf
+
 * Thu May 28 2015 Julian Brown <julian.brown@cpanel.net> - 1.4-2
 * Name changes for the rpm and required rpms. 
 
