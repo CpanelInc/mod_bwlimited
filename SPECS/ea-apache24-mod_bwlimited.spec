@@ -9,6 +9,7 @@ License: Unknown
 Group: System Environment/Daemons
 URL: http://cpanel.net/
 Source0: mod_bwlimited-1.4.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ea-apache24-devel
 Requires: ea-apache24-mmn = %{_httpd_mmn}
 Requires(pre): ea-apache24
@@ -36,6 +37,9 @@ install %{module_name}.so %{buildroot}%{_httpd_moddir}/
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/apache2/conf.modules.d/
 install -p $RPM_SOURCE_DIR/490_bwlimited.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache2/conf.modules.d/490_mod_bwlimited.conf
 
+%clean
+rm -rf %{buildroot}
+
 %files
 %defattr(0640,root,root,0755)
 %attr(755,root,root)%{_httpd_moddir}/*.so
@@ -52,7 +56,7 @@ install -p $RPM_SOURCE_DIR/490_bwlimited.conf $RPM_BUILD_ROOT%{_sysconfdir}/apac
 - Enable module by installing 490_bwlimited.conf
 
 * Thu May 28 2015 Julian Brown <julian.brown@cpanel.net> - 1.4-2
-* Name changes for the rpm and required rpms. 
+* Name changes for the rpm and required rpms.
 
 * Wed Nov 26 2014 Matt Dees <matt@cpanel.net> - 1.4-1
 * Implement a new spec
