@@ -4,7 +4,7 @@
 Summary: Provides cPanel's way of disabling bandwidth exceeders
 Name: ea-apache24-mod_bwlimited
 Version: 1.4
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: Unknown
 Group: System Environment/Daemons
 URL: http://cpanel.net/
@@ -32,16 +32,22 @@ mv .libs/%{module_name}.so .
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_httpd_moddir}
-install -m755 %{module_name}.so %{buildroot}%{_httpd_moddir}/
+install %{module_name}.so %{buildroot}%{_httpd_moddir}/
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/apache2/conf.modules.d/
-install -m 644 -p $RPM_SOURCE_DIR/490_bwlimited.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache2/conf.modules.d/490_bwlimited.conf
+install -p $RPM_SOURCE_DIR/490_bwlimited.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache2/conf.modules.d/490_mod_bwlimited.conf
 
 %files
 %defattr(0640,root,root,0755)
 %attr(755,root,root)%{_httpd_moddir}/*.so
-%config(noreplace) %{_sysconfdir}/apache2/conf.modules.d/490_bwlimited.conf
+%config(noreplace) %attr(0644,root,root) %{_sysconfdir}/apache2/conf.modules.d/490_mod_bwlimited.conf
 
 %changelog
+* Tue Jan 05 2016 S. Kurt Newman <kurt.newman@cpanel.net> - 1.4-4
+- Change bwlimited.conf to 0644 so that normal users can load modules
+  the same as Apache while testing their configuration with 'httpd -t'
+- Also renamed configuration to 490_mod_bwlimited.conf to match the
+  naming scheme of our other files.
+
 * Thu Dec 24 2015 Dan Muey <dan@cpanel.net> - 1.4-3
 - Enable module by installing 490_bwlimited.conf
 
