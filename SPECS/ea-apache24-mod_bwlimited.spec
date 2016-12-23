@@ -5,11 +5,12 @@ Summary: Provides cPanel's way of disabling bandwidth exceeders
 Name: ea-apache24-mod_bwlimited
 Version: 1.4
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4556 for more details
-%define release_prefix 45
+%define release_prefix 46
 Release: %{release_prefix}%{?dist}.cpanel
 License: Unknown
 Group: System Environment/Daemons
 URL: http://cpanel.net/
+Vendor: cPanel, Inc.
 Source0: mod_bwlimited-1.4.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ea-apache24-devel
@@ -48,6 +49,9 @@ rm -rf %{buildroot}
 %config(noreplace) %attr(0644,root,root) %{_sysconfdir}/apache2/conf.modules.d/490_mod_bwlimited.conf
 
 %changelog
+* Fri Dec 16 2016 Jacob Perkins <jacob.perkins@cpanel.net> - 1.4-46
+- EA-5493: Added vendor field
+
 * Mon Jun 20 2016 Dan Muey <dan@cpanel.net> - 1.4-45
 - EA-4383: Update Release value to OBS-proof versioning
 
