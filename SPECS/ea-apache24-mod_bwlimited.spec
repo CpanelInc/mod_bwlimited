@@ -1,6 +1,10 @@
 %global ns_name ea-apache24
 %global module_name mod_bwlimited
 
+%if 0%{?rhel} > 7
+%global debug_package %{nil}
+%endif
+
 Summary: Provides cPanel's way of disabling bandwidth exceeders
 Name: ea-apache24-mod_bwlimited
 Version: 1.4
