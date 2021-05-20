@@ -2,6 +2,8 @@
 
 source debian/vars.sh
 
+set -x
+
 rm -rf $DEB_INSTALL_ROOT
 mkdir -p $DEB_INSTALL_ROOT$_httpd_moddir
 install $module_name.so $DEB_INSTALL_ROOT$_httpd_moddir/
