@@ -6,8 +6,7 @@
 %endif
 
 Summary: Provides cPanel's way of disabling bandwidth exceeders
-Name: ea-apache24-mod-bwlimited
-Provides: ea-apache24-mod_bwlimited
+Name: ea-apache24-mod_bwlimited
 Version: 1.4
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4556 for more details
 %define release_prefix 47
