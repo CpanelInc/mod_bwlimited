@@ -1,15 +1,11 @@
 %global ns_name ea-apache24
 %global module_name mod_bwlimited
 
-%if 0%{?rhel} > 7
-%global debug_package %{nil}
-%endif
-
 Summary: Provides cPanel's way of disabling bandwidth exceeders
 Name: ea-apache24-mod_bwlimited
 Version: 1.4
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4556 for more details
-%define release_prefix 47
+%define release_prefix 48
 Release: %{release_prefix}%{?dist}.cpanel
 License: Unknown
 Group: System Environment/Daemons
@@ -53,6 +49,9 @@ rm -rf %{buildroot}
 %config(noreplace) %attr(0644,root,root) %{_sysconfdir}/apache2/conf.modules.d/490_mod_bwlimited.conf
 
 %changelog
+* Tue May 09 2023 Brian Mendoza <brian.mendoza@cpanel.net> - 1.4-48
+- ZC-10936: Clean up Makefile and remove debug-package-nil
+
 * Wed May 20 2020 Julian Brown <julian.brown@cpanel.net> - 1.4-47
 - ZC-6836: Build on CentOS 8
 
